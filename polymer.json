@@ -1,23 +1,36 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/my-app.html",
+  "shell": "src/news-app.html",
   "fragments": [
-    "src/home.html",
-    "src/my-view2.html",
-    "src/my-view3.html",
-    "src/my-new-view.html",
-    "src/my-view404.html"
+    "src/news-list.html",
+    "src/news-article.html",
+    "src/news-path-warning.html",
+    "src/lazy-resources.html"
   ],
   "sources": [
     "src/**/*",
     "images/**/*",
+    "data/**/*",
     "bower.json"
   ],
   "extraDependencies": [
+    "app.yaml",
+    "main.py",
     "manifest.json",
-    "bower_components/webcomponentsjs/*.js"
+    "bower_components/webcomponentsjs/webcomponents-lite.min.js"
   ],
-  "lint": {
-    "rules": ["polymer-2"]
-  }
+  "builds": [{
+    "name": "bundled",
+    "bundle": true,
+    "js": {"minify": true},
+    "css": {"minify": true},
+    "html": {"minify": true},
+    "addServiceWorker": true
+  },{
+    "name": "unbundled",
+    "js": {"minify": true},
+    "css": {"minify": true},
+    "html": {"minify": true},
+    "addServiceWorker": true
+  }]
 }

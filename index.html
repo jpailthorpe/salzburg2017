@@ -10,83 +10,84 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="generator" content="Polymer Starter Kit">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
 
-    <title>My App</title>
-    <meta name="description" content="My App description">
+  <title>Salzburg Product Playbook</title>
 
-    <!--
-      If deploying to a non-root path, replace href="/" with the full path to the project root.
-      For example: href="/polymer-starter-kit/relative-path-example/"
-    -->
-    <base href="/">
+  <link rel="shortcut icon" sizes="32x32" href="/images/news-icon-32.png">
+  <meta name="theme-color" content="#000">
+  <link rel="manifest" href="/manifest.json">
 
-    <link rel="icon" href="images/favicon.ico">
+  <link rel="import" href="/src/news-app.html" async>
+  <link rel="import" href="src/hello-world.html">
 
-    <!-- See https://goo.gl/OOhYW5 -->
-    <link rel="manifest" href="manifest.json">
+  <style>
 
-    <!-- See https://goo.gl/qRE0vM -->
-    <meta name="theme-color" content="#3f51b5">
+    body {
+      margin: 0;
+      background-color: #50E3C2;
+      color: #383838;
+      font-family: Raleway;
+      min-height: 100vh;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }
 
-    <!-- Add to homescreen for Chrome on Android. Fallback for manifest.json -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="My App">
+    /* styling for render while resources are loading */
+    news-app[unresolved] {
+      display: block;
+      height: 45px;
+      padding-top: 40px;
+      padding-left: 10px;
+      font-size: 39px;
+      font-weight: 600;
+      letter-spacing: 10px;
+      text-align: center;
+    }
 
-    <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="My App">
-
-    <!-- Homescreen icons -->
-    <link rel="apple-touch-icon" href="images/manifest/icon-48x48.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="images/manifest/icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="96x96" href="images/manifest/icon-96x96.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="images/manifest/icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="192x192" href="images/manifest/icon-192x192.png">
-
-    <!-- Tile icon for Windows 8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/manifest/icon-144x144.png">
-    <meta name="msapplication-TileColor" content="#3f51b5">
-    <meta name="msapplication-tap-highlight" content="no">
-
-    <script>
-      // Register the base URL
-      const baseUrl = document.querySelector('base').href;
-
-      // Load and register pre-caching Service Worker
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register(baseUrl + 'service-worker.js');
-        });
-      }
-    </script>
-
-    <!-- Load webcomponents-loader.js to check and load any polyfills your browser needs -->
-    <script src="bower_components/webcomponentsjs/webcomponents-loader.js"></script>
-
-    <!-- Load your application shell -->
-    <link rel="import" href="src/my-app.html">
-
-    <!-- Add any global styles for body, document, etc. -->
-    <style>
+    /* mobile */
+    @media (max-width: 767px) {
       body {
-        margin: 0;
-        font-family: 'Roboto', 'Noto', sans-serif;
-        line-height: 1.5;
-        min-height: 100vh;
-        background-color: #eeeeee;
+        background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.25) 15%, rgba(0,0,0,0.25) 30%, rgba(0,0,0,0.7) 48%, rgba(0,0,0,1) 60%);
+        background-repeat: no-repeat;
+        background-size: 100% 100vh;
       }
-    </style>
-  </head>
-  <body>
-    <my-app></my-app>
-    <noscript>
-      Please enable JavaScript to view this website.
-    </noscript>
-    <!-- Built with love using Polymer Starter Kit -->
-  </body>
+
+      body.fixed-viewport-height {
+        background-size: 100% 600px;
+      }
+
+      news-app[unresolved] {
+        height: 22px;
+        padding-top: 21px;
+        font-size: 20px;
+        color: #FFF; /* --app-cover-text-color */
+      }
+    }
+
+  </style>
+
+</head>
+<body>
+  <news-app unresolved app-title="Salzburg Product Playbook">Salzburg Product Playbook</news-app>
+
+  <script>
+    Polymer = {lazyRegister: true, dom: 'shadow'};
+
+    (function() {
+      if ('registerElement' in document
+          && 'import' in document.createElement('link')
+          && 'content' in document.createElement('template')) {
+        // platform is good!
+      } else {
+        // polyfill the platform!
+        var e = document.createElement('script');
+        e.src = '/bower_components/webcomponentsjs/webcomponents-lite.min.js';
+        document.body.appendChild(e);
+      }
+    })();
+  </script>
+
+</body>
 </html>
